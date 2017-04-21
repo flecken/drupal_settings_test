@@ -1,13 +1,6 @@
-FROM drupal:8.3.0-apache
+#!/bin/bash
 
-RUN apt-get -qq update && apt-get install -y git-core
-RUN mkdir /var/www/html/kodak/
-RUN chown www-data:www-data /var/www/html/kodak
-RUN chmod 755 /var/www/html/kodak/
-RUN git clone https://github.com/flecken/drupal_settings_test.git /var/www/html/kodak/
-
-
-RUN echo "<VirtualHost *:80>
+echo "<VirtualHost *:80>
 	# The ServerName directive sets the request scheme, hostname and port that
 	# the server uses to identify itself. This is used when creating
 	# redirection URLs. In the context of virtual hosts, the ServerName
@@ -18,7 +11,7 @@ RUN echo "<VirtualHost *:80>
 	#ServerName www.example.com
 
 	ServerAdmin webmaster@localhost
-	DocumentRoot /var/www/html/kodak/drupal
+	DocumentRoot /var/www/html
 
 	# Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
 	# error, crit, alert, emerg.
@@ -35,8 +28,5 @@ RUN echo "<VirtualHost *:80>
 	# following line enables the CGI configuration for this host only
 	# after it has been globally disabled with "a2disconf".
 	#Include conf-available/serve-cgi-bin.conf
-
-	SetEnv DRUPAL_DB " $DRUPAL_DB "
-
-</VirtualHost>" > /etc/apache2/sites-available/000-default.conf
+</VirtualHost>" > /home/fleck/drupal/drupal_settings_test/000-default.conf
 

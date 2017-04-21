@@ -643,4 +643,4 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
  */
 # $conf['allow_css_double_underscores'] = TRUE;
 
-$conf['site_name'] = 'Second Branch Test';
+$conf['site_name'] = 'Master Branch';

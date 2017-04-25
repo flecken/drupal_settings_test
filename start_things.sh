@@ -1,5 +1,5 @@
 #!/bin/sh
 set -e
 #echo ${GIT_BRANCH}
-exec pull.sh &
+exec clone &
 exec docker-php-entrypoint apache2-foreground 

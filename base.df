@@ -1,0 +1,21 @@
+FROM gitlayer
+LABEL base.name="Kodak" 
+
+COPY start_things.sh /usr/local/bin/
+COPY pull.sh /usr/local/bin/
+
+
+RUN mkdir /var/www/html/kodak/ && \
+    chown www-data:www-data /var/www/html/kodak && \
+    chmod 755 /var/www/html/kodak/ 
+
+RUN echo "<VirtualHost *:80>" > /etc/apache2/sites-available/000-default.conf
+RUN echo "	ServerAdmin webmaster@localhost" >> /etc/apache2/sites-available/000-default.conf
+RUN echo "	DocumentRoot /var/www/html/kodak/drupal" >> /etc/apache2/sites-available/000-default.conf
+RUN echo "	ErrorLog ${APACHE_LOG_DIR}/error.log" >> /etc/apache2/sites-available/000-default.conf
+RUN echo "	CustomLog ${APACHE_LOG_DIR}/access.log combined" >> /etc/apache2/sites-available/000-default.conf
+RUN echo "	PassEnv DRUPAL_DB" >> /etc/apache2/sites-available/000-default.conf
+RUN echo "</VirtualHost>" >> /etc/apache2/sites-available/000-default.conf
+
+ENTRYPOINT ["start_things.sh"]
+

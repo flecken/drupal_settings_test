@@ -3,6 +3,7 @@ LABEL base.name="Kodak"
 
 COPY start_things.sh /usr/local/bin/
 COPY pull /usr/local/bin/
+
 COPY clone /usr/local/bin/
 
 RUN mkdir /var/www/html/kodak/ && \
